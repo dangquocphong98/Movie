@@ -1,0 +1,35 @@
+﻿@model List<RoseClientF.Models.Movie>
+@{
+    ViewBag.Title = "AllMovie";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
+}
+
+<main class="content">
+    <section class="centered">
+        <h3>Most Watched Movies</h3>
+        <div class="movies">
+            @foreach (var item in Model)
+            {
+                <div class="mov">
+                    <a href="@Url.Action("DetailMovie","Index",new { Id = item.Id})">
+                        <img src="~/Asset/img/Movie/@item.Poster" />
+                        <h2 class="movietitle">@item.Name- @String.Format(culture, "{0:N0}", item.Price)</h2>
+                    </a>
+                </div>
+            }
+
+        </div>
+        <nav class="pagination">
+            <ul>
+                <li><a href="#">Prev</a></li>
+               
+                <li><a href="#" class="menuactive">2</a></li>
+               
+                <li><a href="#">Next</a></li>
+            </ul>
+        </nav>
+    </section>
+
+</main>
+

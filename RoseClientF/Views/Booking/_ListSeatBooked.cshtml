@@ -1,0 +1,43 @@
+﻿@model RoseClientF.ViewModel.SeatViewModel
+@{
+    var GroupSeat = Model.LsSeat.GroupBy(x => x.Row);
+    var ListSeatBooked = Model.LsSeatBooked;
+}
+
+<p style="margin-left:62%;transform:translateX(-50%);">Màn hình</p>
+<ol class="cabin fuselage">
+    @foreach (var item in GroupSeat)
+    {
+        <li class="">
+            <ol class="seats" type="A">
+                <li style="display:inline-block;margin-top:12px;margin-right:15px;">
+                    <label>@item.Key</label>
+                </li>
+                @foreach (var itemSeat in item)
+                {
+                    <li class="seat">
+                        <input name="postion" type="checkbox" id="@item.Key@itemSeat.Name" />
+                        <label for="@item.Key@itemSeat.Name">@itemSeat.Name</label>
+                    </li>
+                }
+            </ol>
+
+        </li>
+    }
+
+</ol>
+<button class="btn btn-primary" onclick="SubmitSeat()">Xác nhận chỗ ngồi</button>
+
+<script>
+    loadBooked();
+    function loadBooked() {
+        debugger
+        var ls = JSON.parse('@Html.Raw(Json.Encode(ListSeatBooked))');
+        if (ls.length > 0) {
+            for (item of ls)
+                document.getElementById($.trim(item)).disabled = true;
+        }
+        
+    }
+
+</script>

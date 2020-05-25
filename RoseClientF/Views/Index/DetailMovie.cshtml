@@ -1,0 +1,89 @@
+﻿@model RoseClientF.ViewModel.MovieViewModel
+@{
+    ViewBag.Title = "DetailMovie";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<style>
+    .mov-clone {
+        float: left;
+        /* width: calc(20% - 20px); */
+        padding: 10px 10px 0 10px;
+        position: relative;
+    }
+
+    .bt-book{
+        margin-top:10px;
+    }
+</style>
+<main class="content">
+    <div class="single">
+
+        <section class="trailer">
+            <h3>Trailer</h3>
+            <div class="trailer_frame">
+                <iframe width="560" height="315" src="@Model.Trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section class="movie d-flex">
+            <div class="d-flex flex-column">
+                <img style="width:200px;" src="~/Asset/img/Movie/@Model.Poster" />
+                <a href="@Url.Action("Index","Booking",new { Id = Model.Id})" class="btn btn-primary bt-book">Book</a>
+            </div>
+           
+            
+            <ul>
+                <li>Name : @Model.Name</li>
+                <li>The first human born on Mars travels to Earth for the first time, experiencing the wonders of the planet through fresh eyes. He embarks on an adventure with a street smart girl to discover how he came to be.</li>
+                <li>Actor: @Model.Actor</li>
+                <li>Category: @Model.Category</li>
+                <li>Price: @Model.Price</li>
+            </ul>
+        </section>
+        <div class="">
+            <p>Actor Detail</p>
+            @foreach (var item in ViewBag.ListActor)
+            {
+                <div class="mov-clone">
+                    <a href="#">
+                        <img src="~/Asset/img/Actor/@item.img" />
+                        <h2 class="movietitle">@item.Name</h2>
+                    </a>
+                </div>
+            }
+        </div>
+        <section class="related">
+            <h3>Related movies</h3>
+            <div class="relatemovie">
+                <a href="#"><img src="~/Asset/images/2.jpg"></a>
+                <a href="#"><span class="relatedname">John Wick</span></a>
+            </div>
+            <div class="relatemovie">
+                <a href="#"><img src="~/Asset/images/3.jpg"></a>
+                <a href="#"><span class="relatedname">Spider Man Homecoming</span></a>
+            </div>
+            <div class="relatemovie">
+                <a href="#"><img src="~/Asset/images/4.jpg"></a>
+                <a href="#"><span class="relatedname">Beauty and Beast</span></a>
+            </div>
+            <div class="relatemovie">
+                <a href="#"><img src="~/Asset/images/5.jpg"></a>
+                <a href="#"><span class="relatedname">Pirates of the Caribbean: Dead Men Tell No Tales</span></a>
+            </div>
+            <div class="relatemovie">
+                <a href="#"><img src="~/Asset/images/6.jpg"></a>
+                <a href="#"><span class="relatedname">Fifty Shades Darker</span></a>
+            </div>
+            <div class="relatemovie">
+                <a href="#"><img src="~/Asset/images/7.jpg"></a>
+                <a href="#"><span class="relatedname">Transformers</span></a>
+            </div>
+
+        </section>
+
+        <section class="comments">
+            <h3>Comments</h3>
+        </section>
+    </div>
+</main>
+
